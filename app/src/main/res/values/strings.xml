@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Juego de Gato</string>
+    <string name="reinciar_juego">Reinciar Juego</string>
 </resources>

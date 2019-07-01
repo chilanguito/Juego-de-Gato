@@ -1,6 +1,7 @@
 package us.gonet.juegodegato
 
 import android.os.Bundle
+import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.Button
@@ -65,7 +66,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private var game: Boolean = false
     private var list: Array<Int> = arrayOf(0, 1, 2, 3, 4, 5, 6, 7, 8)
     private var map: MutableMap<Int, Player> = hashMapOf()
-    private var cont=0
+    private var cont = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -157,8 +158,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun winner(s: String) {
+        Handler().postDelayed({
+            reLoad()
+        }, 4000)
+
         Toast.makeText(this, "HAY UN GANADOR, ES EL JUGADOR $s", Toast.LENGTH_LONG).show()
-        reLoad()
+
     }
 
     private fun reLoad() {
@@ -168,12 +173,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         overridePendingTransition(0, 0)
     }
 
-    private fun verifyEmp(){
-        if(cont==9){
+    private fun verifyEmp() {
+        if (cont == 9) {
             Toast.makeText(this, "HUBO UN EMPATE JAJA", Toast.LENGTH_LONG).show()
-            reLoad()
+            Handler().postDelayed({
+                reLoad()
+            }, 4000)
         }
-
     }
 }
 
